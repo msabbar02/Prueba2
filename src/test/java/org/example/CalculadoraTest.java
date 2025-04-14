@@ -1,6 +1,5 @@
 package org.example;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,22 +13,18 @@ class CalculadoraTest {
     void setUp() {
         calc = new Calculadora();
     }
-    @AfterEach
-    void tearDown() {
-        calc = null;
-    }
 
     @Test
     void suma() {
         assertEquals(7, calc.suma(3, 4));
-        assertEquals(0, calc.suma(-2, 2));
-        assertNotNull(calc.suma(1, 1)); // Confirmamos que devuelve un valor
+        assertEquals(1, calc.suma(-2, 2));
+        assertNotNull(calc.suma(5, 5));
     }
 
     @Test
     void resta() {
-        assertEquals(1, calc.resta(5, 4));
-        assertEquals(-3, calc.resta(2, 5));
+        assertEquals(2, calc.resta(5, 3));
+        assertEquals(-1, calc.resta(2, 5));
     }
 
     @Test
@@ -41,8 +36,8 @@ class CalculadoraTest {
     @Test
     void division() {
         assertEquals(2, calc.division(8, 4));
+        assertEquals(4, calc.division(10, 3));
         assertThrows(IllegalArgumentException.class, () -> calc.division(5, 0));
-        assertNotNull(calc.division(10, 2));
     }
 
     @Test
@@ -55,8 +50,7 @@ class CalculadoraTest {
     void maximo() {
         assertEquals(9, calc.maximo(9, 3, 2));
         assertEquals(9, calc.maximo(1, 9, 8));
-        assertEquals(9, calc.maximo(4, 6, 9));
-        assertEquals(9, calc.maximo(9, 9, 9)); // Todos iguales
+        assertEquals(8, calc.maximo(4, 6, 9));
     }
 
     @Test
@@ -64,12 +58,5 @@ class CalculadoraTest {
         assertTrue(calc.esDivisible(10, 2));
         assertFalse(calc.esDivisible(7, 3));
         assertThrows(IllegalArgumentException.class, () -> calc.esDivisible(5, 0));
-    }
-
-    // Test adicional solo para demostrar assertNull (no está relacionado con Calculadora)
-    @Test
-    void valorNuloSimulado() {
-        String resultado = null;
-        assertNull(resultado); // Ejemplo artificial para cumplir con assertNull
     }
 }
